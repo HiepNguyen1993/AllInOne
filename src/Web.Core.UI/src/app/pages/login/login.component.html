@@ -1,0 +1,33 @@
+<!--header start here-->
+<div class="login-form">
+  <div class="top-login">
+    <span>
+      <img src="images/group.png" alt="" />
+    </span>
+  </div>
+  <h1>Login</h1>
+  <div class="login-top">
+    <form [(disabledAll)]="isDataLoading" class="m-t" role="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="login-ic">
+        <i></i>
+        <input type="text" value="User name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User name';}"
+        formControlName="Username" class="login-info"/>
+        <div class="clear"> </div>
+      </div>
+      <div class="login-ic">
+        <i class="icon"></i>
+        <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}"
+        formControlName="Password" class="login-info"/>
+        <div class="clear"> </div>
+      </div>
+
+      <div class="log-bwn">
+        <input type="submit" [disabled]="form.invalid" value="Login">
+      </div>
+    </form>
+  </div>
+  <p class="copy">© 2018 Design by
+    <a href="#" target="_blank">HiepNguyen</a>
+  </p>
+</div>
+<!--header start here-->

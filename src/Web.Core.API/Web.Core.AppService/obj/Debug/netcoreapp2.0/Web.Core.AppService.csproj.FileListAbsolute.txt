@@ -1,0 +1,9 @@
+D:\Research\CoreApi\HCore\Web.Core.API\Web.Core.AppService\bin\Debug\netcoreapp2.0\Web.Core.AppService.deps.json
+D:\Research\CoreApi\HCore\Web.Core.API\Web.Core.AppService\bin\Debug\netcoreapp2.0\Web.Core.AppService.dll
+D:\Research\CoreApi\HCore\Web.Core.API\Web.Core.AppService\obj\Debug\netcoreapp2.0\Web.Core.AppService.csproj.CoreCompileInputs.cache
+D:\Research\CoreApi\HCore\Web.Core.API\Web.Core.AppService\obj\Debug\netcoreapp2.0\Web.Core.AppService.AssemblyInfoInputs.cache
+D:\Research\CoreApi\HCore\Web.Core.API\Web.Core.AppService\obj\Debug\netcoreapp2.0\Web.Core.AppService.AssemblyInfo.cs
+D:\Research\CoreApi\HCore\Web.Core.API\Web.Core.AppService\bin\Debug\netcoreapp2.0\Web.Core.AppService.pdb
+D:\Research\CoreApi\HCore\Web.Core.API\Web.Core.AppService\obj\Debug\netcoreapp2.0\Web.Core.AppService.dll
+D:\Research\CoreApi\HCore\Web.Core.API\Web.Core.AppService\obj\Debug\netcoreapp2.0\Web.Core.AppService.pdb
+D:\Research\CoreApi\HCore\Web.Core.API\Web.Core.AppService\obj\Debug\netcoreapp2.0\Web.Core.AppService.csprojResolveAssemblyReference.cache
