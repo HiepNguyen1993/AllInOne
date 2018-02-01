@@ -9,13 +9,15 @@ import { TranslateService } from './translate/translate.service';
 import { LoginService } from './pages/login/@services/login.service';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
