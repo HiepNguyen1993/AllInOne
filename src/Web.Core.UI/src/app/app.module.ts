@@ -1,3 +1,4 @@
+import { AuthGuard } from './common/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './pages/app/app.component';
@@ -29,7 +30,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
   ],
   providers: [
     TranslateService,
-    LoginService
+    LoginService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

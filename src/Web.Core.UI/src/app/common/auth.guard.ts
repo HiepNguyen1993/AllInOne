@@ -6,8 +6,7 @@ import { LoginService } from '../pages/login/@services/login.service';
 export class AuthGuard implements CanActivate {
 
     constructor(
-        private router: Router, private activatedRoute: ActivatedRoute,
-        private location: Location, private loginService: LoginService) {
+        private router: Router, private activatedRoute: ActivatedRoute, private loginService: LoginService) {
     }
 
     // TODO: [DD] Just for work around. Will be updated later
@@ -18,7 +17,7 @@ export class AuthGuard implements CanActivate {
             return;
         }
 
-        if (localStorage.getItem('user_info') && JSON.parse(localStorage.getItem('user_info')).access_token) {
+        if (localStorage.getItem('user_info') && JSON.parse(localStorage.getItem('user_info')).token) {
             return true;
         } else {
             this.router.navigate(['login']);

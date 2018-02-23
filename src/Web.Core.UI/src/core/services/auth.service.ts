@@ -26,7 +26,7 @@ export class AuthService {
 
     // tslint:disable-next-line:member-ordering
     public isLoggedIn() {
-        if (localStorage.getItem(this.USER_INFO) && JSON.parse(localStorage.getItem(this.USER_INFO)).access_token) {
+        if (localStorage.getItem(this.USER_INFO) && JSON.parse(localStorage.getItem(this.USER_INFO)).token) {
             return true;
         }
         return false;

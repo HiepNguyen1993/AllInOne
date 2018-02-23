@@ -45,11 +45,26 @@ namespace Web.Core.API.Controllers
                 return Ok(new
                 {
                     status = "success",
-                    result = token
+                    result = new
+                    {
+                        token = token,
+                        info = new
+                        {
+                            name = result.Name,
+                            id = result.Id,
+                            email = result.Email
+                        }
+                    }
                 });
             }
 
             return BadRequest("Could not verify username and password");
+        }
+
+        [HttpGet("isLogin")]
+        public IActionResult IsLogin()
+        {
+            return Ok(true);
         }
 
         [Authorize]
