@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <Folder Include="Configuration\" />
+    <Folder Include="ServiceContracts\Command\" />
+    <Folder Include="Services\Command\" />
   </ItemGroup>
 
 </Project>

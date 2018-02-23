@@ -4,12 +4,16 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Web.Core.AppService.Domain;
 using Web.Core.AppService.DTO;
 using Web.Core.AppService.Models;
+using Web.Core.AppService.ServiceContracts.Query;
 
 namespace Web.Core.API.Controllers
 {
@@ -17,37 +21,28 @@ namespace Web.Core.API.Controllers
     public class AccountController : Controller
     {
         private readonly WebDbContext _context;
-        public AccountController(WebDbContext context)
+        //private readonly IAccountQueryService _accountQueryService;
+        private readonly IConfiguration _configuration;
+
+        public AccountController(
+            WebDbContext context,
+            //IAccountQueryService accountQueryService,
+            IConfiguration configuration)
         {
             _context = context;
+            //_accountQueryService = accountQueryService;
+            _configuration = configuration;
         }
 
         [AllowAnonymous]
-        [HttpPost("Login")]
-        public IActionResult RequestToken([ModelBinder] LoginRequestDTO request)
+        [HttpPost("login")]
+        public async Task<object> RequestToken([ModelBinder] LoginRequestDTO request)
         {
-            if (request.Username == "hiep" && request.Password == "hiep")
-            {
-                var claims = new[]
-                {
-                    new Claim(ClaimTypes.Name, request.Username)
-                };
-
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is my custom Secret key for authnetication"));
-                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-                var token = new JwtSecurityToken(
-                    issuer: "http://localhost:5000",
-                    audience: "http://localhost:4200",
-                    claims: claims,
-                    expires: DateTime.Now.AddMinutes(30),
-                    signingCredentials: creds);
-
-                return Ok(new
-                {
-                    token = new JwtSecurityTokenHandler().WriteToken(token)
-                });
-            }
+            //var result = await _accountQueryService.ValidateUser(request.Username, request.Password);
+            //if (result != null)
+            //{
+            //    return await GenerateJwtToken(result);
+            //}
 
             return BadRequest("Could not verify username and password");
         }
@@ -68,6 +63,30 @@ namespace Web.Core.API.Controllers
                 return NotFound();
             }
             return new ObjectResult(item);
+        }
+
+        private async Task<object> GenerateJwtToken(User user)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Name)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration["JwtExpireDays"]));
+
+            var token = new JwtSecurityToken(
+                _configuration["JwtIssuer"],
+                _configuration["JwtIssuer"],
+                claims,
+                expires: expires,
+                signingCredentials: creds
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

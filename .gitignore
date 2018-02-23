@@ -17,4 +17,6 @@ bin-release/
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
-/src/Api-Core
+/src/Web.Core.API/Web.Core.API/obj/*
+/src/Web.Core.API/Web.Core.AppService/bin/*
+/src/Web.Core.API/Web.Core.AppService/obj/*

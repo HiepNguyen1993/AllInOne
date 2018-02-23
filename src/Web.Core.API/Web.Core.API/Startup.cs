@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Web.Core.AppService;
 using Web.Core.AppService.Models;
+using Web.Core.AppService.ServiceContracts.Query;
+using Web.Core.AppService.Services.Query;
 
 namespace Web.Core.API
 {
@@ -34,11 +37,37 @@ namespace Web.Core.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //var connection = @"Server=HIEPPC;Database=basic_db;Trusted_Connection=True;";
             services.AddDbContext<WebDbContext>();
 
             WebIocRegister.RegisterServices(services);
 
+            // ===== Add Identity ========
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<WebDbContext>()
+                .AddDefaultTokenProviders();
+
+            // ===== Add Jwt Authentication ========
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
+            services
+                .AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+                })
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.RequireHttpsMetadata = false;
+                    cfg.SaveToken = true;
+                    cfg.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidIssuer = Configuration["JwtIssuer"],
+                        ValidAudience = Configuration["JwtIssuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
+                        ClockSkew = TimeSpan.Zero // remove delay of token when expire
+                    };
+                });
 
             // Add service and create Policy with options
             services.AddCors(options =>
@@ -65,10 +94,13 @@ namespace Web.Core.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(option => option.WithOrigins("http://localhost:4200", "http://localhost:4100").AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(option => option.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
 
             app.UseStaticFiles();
-            //app.UseAuthentication();
+
+            // ===== Use Authentication ======
+            app.UseAuthentication();
+
             app.UseMvc();
             app.UseMvc(routes =>
             {
