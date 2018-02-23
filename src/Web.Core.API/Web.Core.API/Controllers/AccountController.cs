@@ -21,28 +21,33 @@ namespace Web.Core.API.Controllers
     public class AccountController : Controller
     {
         private readonly WebDbContext _context;
-        //private readonly IAccountQueryService _accountQueryService;
+        private readonly IAccountQueryService _accountQueryService;
         private readonly IConfiguration _configuration;
 
         public AccountController(
             WebDbContext context,
-            //IAccountQueryService accountQueryService,
+            IAccountQueryService accountQueryService,
             IConfiguration configuration)
         {
             _context = context;
-            //_accountQueryService = accountQueryService;
+            _accountQueryService = accountQueryService;
             _configuration = configuration;
         }
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<object> RequestToken([ModelBinder] LoginRequestDTO request)
+        public async Task<IActionResult> RequestToken([FromBody] LoginRequestDTO request)
         {
-            //var result = await _accountQueryService.ValidateUser(request.Username, request.Password);
-            //if (result != null)
-            //{
-            //    return await GenerateJwtToken(result);
-            //}
+            var result = await _accountQueryService.ValidateUser(request.Username, request.Password);
+            if (result != null)
+            {
+                var token = await GenerateJwtToken(result);
+                return Ok(new
+                {
+                    status = "success",
+                    result = token
+                });
+            }
 
             return BadRequest("Could not verify username and password");
         }
@@ -69,7 +74,7 @@ namespace Web.Core.API.Controllers
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Name),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.NameIdentifier, user.Name)
             };

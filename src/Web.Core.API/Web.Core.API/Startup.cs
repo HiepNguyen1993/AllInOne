@@ -41,6 +41,10 @@ namespace Web.Core.API
 
             WebIocRegister.RegisterServices(services);
 
+            // Build the intermediate service provider
+            services.BuildServiceProvider();
+            
+
             // ===== Add Identity ========
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<WebDbContext>()

@@ -34,10 +34,16 @@ export class LoginComponent implements OnInit {
   async onSubmit() {
     this.isDataLoading = true;
     try {
-      this._loginService.login(this.form.value).subscribe(res => {
-        this.userModel = res.json();
-        this._authService.setUser<UserModel>(this.userModel);
-        this._router.navigate(['./dsb']);
+      this._loginService.login(this.form.value)
+      .map(res => res.json())
+      .subscribe(res => {
+        if (res.status === 'success') {
+          let a = res.json();
+          this._authService.setUser<UserModel>(this.userModel);
+          this._router.navigate(['./dsb']);
+        } else {
+          Alerts.errorNotify(this._translateService.translate('INCORRECT_USERNAME_PASSWORD'));
+        }
       });
     } catch (ex) {
       Alerts.errorNotify(this._translateService.translate('INCORRECT_USERNAME_PASSWORD'));

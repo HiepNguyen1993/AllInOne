@@ -13,7 +13,7 @@ namespace Web.Core.AppService
         public static void RegisterServices(IServiceCollection services)
         {
             services.AddScoped<WebDbContext, WebDbContext>();
-            //services.AddSingleton<IAccountQueryService, AccountQueryService>();
+            services.AddSingleton<IAccountQueryService, AccountQueryService>();
         }
     }
 }
