@@ -25,8 +25,9 @@
         "../node_modules/sweetalert2/dist/sweetalert2.min.css",
         "../node_modules/print.js/dist/print.min.css",
         "./assets/css/login.css",
-        "./assets/vendors/fullcalendar/fullcalendar.bundle.css",
-        "./assets/css/style.bundle.css"
+        "./assets/vendors/custom/fullcalendar/fullcalendar.bundle.css",
+        "./assets/vendors/base/vendors.bundle.css",
+        "./assets/demo/demo3/base/style.bundle.css"
       ],
       "scripts": [
         "../node_modules/bootstrap/dist/js/bootstrap.js",
@@ -35,7 +36,6 @@
         "../node_modules/moment/min/moment-with-locales.min.js",
         "../node_modules/lodash/lodash.min.js",
         "../node_modules/bootstrap-notify/bootstrap-notify.min.js",
-        "./assets/vendors/fullcalendar/fullcalendar.bundle.css",
         "./assets/js/scripts.bundle.js"
       ],
       "environmentSource": "environments/environment.ts",

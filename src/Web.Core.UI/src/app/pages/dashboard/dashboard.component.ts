@@ -1,3 +1,4 @@
+import { ScriptLoaderService } from './../../shared/services/script-loader.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() {
+  constructor(private _script: ScriptLoaderService) {
     $('body').css('background', 'none');
-   }
+    this._script.loadScripts('app-index', ['assets/app/js/dashboard.js']);
+  }
 
   ngOnInit() {
   }

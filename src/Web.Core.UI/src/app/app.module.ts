@@ -1,3 +1,4 @@
+import { ScriptLoaderService } from './shared/services/script-loader.service';
 import { AuthGuard } from './common/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -31,7 +32,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
   providers: [
     TranslateService,
     LoginService,
-    AuthGuard
+    AuthGuard,
+    ScriptLoaderService
   ],
   bootstrap: [AppComponent]
 })
