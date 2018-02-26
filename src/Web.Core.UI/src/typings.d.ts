@@ -18,3 +18,7 @@ declare var _: any;
 declare var require: any;
 declare var particlesJS: any;
 declare var Stats: any;
+declare var mApp: any;
+declare var mLayout: any;
+declare var mUtil: any;
+declare var Chart: any;

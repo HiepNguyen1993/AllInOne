@@ -35,8 +35,10 @@
         "../node_modules/moment/min/moment.min.js",
         "../node_modules/moment/min/moment-with-locales.min.js",
         "../node_modules/lodash/lodash.min.js",
+        "./assets/vendors/base/vendors.bundle.js",
         "../node_modules/bootstrap-notify/bootstrap-notify.min.js",
-        "./assets/js/scripts.bundle.js"
+        "./assets/demo/demo3/base/scripts.bundle.js",
+        "./assets/js/main.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

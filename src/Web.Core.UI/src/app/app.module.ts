@@ -1,3 +1,4 @@
+import { SideNavComponent } from './pages/dashboard/side-nav/side-nav.component';
 import { ScriptLoaderService } from './shared/services/script-loader.service';
 import { AuthGuard } from './common/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +13,10 @@ import { LoginService } from './pages/login/@services/login.service';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LogoutComponent } from './pages/logout/logout.component';
+import { HeaderComponent } from './pages/dashboard/header/header.component';
+import { FooterComponent } from './pages/dashboard/footer/footer.component';
 
 
 
@@ -19,7 +24,12 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    SideNavComponent,
+    HomeComponent,
+    LogoutComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

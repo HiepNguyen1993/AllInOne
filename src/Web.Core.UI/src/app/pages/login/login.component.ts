@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this._authService.isLoggedIn()) {
-      this._router.navigate(['home']);
+      this._router.navigate(['dsb']);
     }
     this.form = this.fb.group({
       'Username': ['', Validators.required],
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         if (res.status === 'success') {
           this.userModel = res.result;
           this._authService.setUser<UserModel>(this.userModel);
-          this._router.navigate(['./home']);
+          this._router.navigate(['./dsb']);
         } else {
           Alerts.errorNotify(this._translateService.translate('INCORRECT_USERNAME_PASSWORD'));
         }
