@@ -13753,11 +13753,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\Research\\CoreApi\\HCore\\Web.Core.API\\Web.Core.API\\Web.Core.API.csproj",
+      "projectUniqueName": "D:\\Research\\CoreApi\\AllInOne\\src\\Web.Core.API\\Web.Core.API\\Web.Core.API.csproj",
       "projectName": "Web.Core.API",
-      "projectPath": "D:\\Research\\CoreApi\\HCore\\Web.Core.API\\Web.Core.API\\Web.Core.API.csproj",
+      "projectPath": "D:\\Research\\CoreApi\\AllInOne\\src\\Web.Core.API\\Web.Core.API\\Web.Core.API.csproj",
       "packagesPath": "C:\\Users\\Hiep-Pc\\.nuget\\packages\\",
-      "outputPath": "D:\\Research\\CoreApi\\HCore\\Web.Core.API\\Web.Core.API\\obj\\",
+      "outputPath": "D:\\Research\\CoreApi\\AllInOne\\src\\Web.Core.API\\Web.Core.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
@@ -13778,8 +13778,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "D:\\Research\\CoreApi\\HCore\\Web.Core.API\\Web.Core.AppService\\Web.Core.AppService.csproj": {
-              "projectPath": "D:\\Research\\CoreApi\\HCore\\Web.Core.API\\Web.Core.AppService\\Web.Core.AppService.csproj"
+            "D:\\Research\\CoreApi\\AllInOne\\src\\Web.Core.API\\Web.Core.AppService\\Web.Core.AppService.csproj": {
+              "projectPath": "D:\\Research\\CoreApi\\AllInOne\\src\\Web.Core.API\\Web.Core.AppService\\Web.Core.AppService.csproj"
             }
           }
         }

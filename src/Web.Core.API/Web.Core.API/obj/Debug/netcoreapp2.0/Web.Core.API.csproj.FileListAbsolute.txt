@@ -11,3 +11,16 @@ D:\Research\CoreApi\HCore\Web.Core.API\Web.Core.API\obj\Debug\netcoreapp2.0\Web.
 D:\Research\CoreApi\HCore\Web.Core.API\Web.Core.API\obj\Debug\netcoreapp2.0\Web.Core.API.pdb
 D:\Research\CoreApi\HCore\Web.Core.API\Web.Core.API\bin\Debug\netcoreapp2.0\Web.Core.AppService.dll
 D:\Research\CoreApi\HCore\Web.Core.API\Web.Core.API\bin\Debug\netcoreapp2.0\Web.Core.AppService.pdb
+D:\Research\CoreApi\AllInOne\src\Web.Core.API\Web.Core.API\bin\Debug\netcoreapp2.0\Web.Core.API.deps.json
+D:\Research\CoreApi\AllInOne\src\Web.Core.API\Web.Core.API\bin\Debug\netcoreapp2.0\Web.Core.API.runtimeconfig.json
+D:\Research\CoreApi\AllInOne\src\Web.Core.API\Web.Core.API\bin\Debug\netcoreapp2.0\Web.Core.API.runtimeconfig.dev.json
+D:\Research\CoreApi\AllInOne\src\Web.Core.API\Web.Core.API\bin\Debug\netcoreapp2.0\Web.Core.API.dll
+D:\Research\CoreApi\AllInOne\src\Web.Core.API\Web.Core.API\bin\Debug\netcoreapp2.0\Web.Core.API.pdb
+D:\Research\CoreApi\AllInOne\src\Web.Core.API\Web.Core.API\bin\Debug\netcoreapp2.0\Web.Core.AppService.dll
+D:\Research\CoreApi\AllInOne\src\Web.Core.API\Web.Core.API\bin\Debug\netcoreapp2.0\Web.Core.AppService.pdb
+D:\Research\CoreApi\AllInOne\src\Web.Core.API\Web.Core.API\obj\Debug\netcoreapp2.0\Web.Core.API.csprojResolveAssemblyReference.cache
+D:\Research\CoreApi\AllInOne\src\Web.Core.API\Web.Core.API\obj\Debug\netcoreapp2.0\Web.Core.API.csproj.CoreCompileInputs.cache
+D:\Research\CoreApi\AllInOne\src\Web.Core.API\Web.Core.API\obj\Debug\netcoreapp2.0\Web.Core.API.AssemblyInfoInputs.cache
+D:\Research\CoreApi\AllInOne\src\Web.Core.API\Web.Core.API\obj\Debug\netcoreapp2.0\Web.Core.API.AssemblyInfo.cs
+D:\Research\CoreApi\AllInOne\src\Web.Core.API\Web.Core.API\obj\Debug\netcoreapp2.0\Web.Core.API.dll
+D:\Research\CoreApi\AllInOne\src\Web.Core.API\Web.Core.API\obj\Debug\netcoreapp2.0\Web.Core.API.pdb

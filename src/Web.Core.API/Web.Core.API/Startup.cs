@@ -105,6 +105,8 @@ namespace Web.Core.API
             // ===== Use Authentication ======
             app.UseAuthentication();
 
+            //app.UseMiddleware<TokenProviderMiddleware>(Options.Create(tokenProviderOptions));
+
             app.UseMvc();
             app.UseMvc(routes =>
             {

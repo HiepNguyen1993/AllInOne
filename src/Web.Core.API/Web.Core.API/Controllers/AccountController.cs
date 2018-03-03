@@ -61,6 +61,7 @@ namespace Web.Core.API.Controllers
             return BadRequest("Could not verify username and password");
         }
 
+        [Authorize]
         [HttpGet("isLogin")]
         public IActionResult IsLogin()
         {
