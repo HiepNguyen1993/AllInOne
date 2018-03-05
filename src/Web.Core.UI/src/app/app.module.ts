@@ -17,6 +17,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { HeaderComponent } from './pages/dashboard/header/header.component';
 import { FooterComponent } from './pages/dashboard/footer/footer.component';
+import { CustomerOverviewComponent } from './pages/customer/customer-overview/customer-overview.component';
+import { CustomerDetailComponent } from './pages/customer/customer-detail/customer-detail.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 
@@ -29,7 +32,9 @@ import { FooterComponent } from './pages/dashboard/footer/footer.component';
     HomeComponent,
     LogoutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CustomerOverviewComponent,
+    CustomerDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,7 @@ import { FooterComponent } from './pages/dashboard/footer/footer.component';
     SharedModule.forRoot(),
   ],
   providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     TranslateService,
     LoginService,
     AuthGuard,

@@ -37,8 +37,7 @@
         "../node_modules/lodash/lodash.min.js",
         "./assets/vendors/base/vendors.bundle.js",
         "../node_modules/bootstrap-notify/bootstrap-notify.min.js",
-        "./assets/demo/demo3/base/scripts.bundle.js",
-        "./assets/js/main.js"
+        "./assets/demo/demo3/base/scripts.bundle.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

@@ -15,6 +15,6 @@ export class SideNavComponent implements OnInit, AfterViewInit {
 
     mLayout.initAside();
 
-}
+  }
 
 }

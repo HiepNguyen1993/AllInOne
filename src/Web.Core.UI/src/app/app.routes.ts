@@ -1,3 +1,5 @@
+import { CustomerDetailComponent } from './pages/customer/customer-detail/customer-detail.component';
+import { CustomerOverviewComponent } from './pages/customer/customer-overview/customer-overview.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
@@ -9,12 +11,15 @@ import { HomeComponent } from './pages/home/home.component';
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
+    { path: 'logout', component: LogoutComponent },
     {
         path: 'dsb', component: DashboardComponent, canActivate: [AuthGuard],
         children: [
             { path: 'logout', component: LogoutComponent },
             { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent, canActivate: [AuthGuard] }
+            { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+            { path: 'customer', component: CustomerOverviewComponent, canActivate: [AuthGuard] },
+            { path: 'create-customer', component: CustomerDetailComponent, canActivate: [AuthGuard] }
         ]},
 
 ];
