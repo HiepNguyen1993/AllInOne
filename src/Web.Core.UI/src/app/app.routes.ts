@@ -1,3 +1,5 @@
+import { PackageDetailComponent } from './pages/package/package-detail/package-detail.component';
+import { ProductOverviewComponent } from './pages/product/product-overview/product-overview.component';
 import { CustomerDetailComponent } from './pages/customer/customer-detail/customer-detail.component';
 import { CustomerOverviewComponent } from './pages/customer/customer-overview/customer-overview.component';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -7,6 +9,8 @@ import { ModuleWithProviders } from '@angular/core';
 import { AuthGuard } from './common/auth.guard';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ProductDetailComponent } from './pages/product/product-detail/product-detail.component';
+import { PackageOverviewComponent } from './pages/package/package-overview/package-overview.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,7 +23,11 @@ const routes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
             { path: 'customer', component: CustomerOverviewComponent, canActivate: [AuthGuard] },
-            { path: 'create-customer', component: CustomerDetailComponent, canActivate: [AuthGuard] }
+            { path: 'create-customer', component: CustomerDetailComponent, canActivate: [AuthGuard] },
+            { path: 'product', component: ProductOverviewComponent, canActivate: [AuthGuard] },
+            { path: 'create-product', component: ProductDetailComponent, canActivate: [AuthGuard] },
+            { path: 'package', component: PackageOverviewComponent, canActivate: [AuthGuard] },
+            { path: 'create-package', component: PackageDetailComponent, canActivate: [AuthGuard] }
         ]},
 
 ];

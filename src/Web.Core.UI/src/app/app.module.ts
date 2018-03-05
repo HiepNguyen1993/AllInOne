@@ -14,12 +14,15 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
-import { LogoutComponent } from './pages/logout/logout.component';
 import { HeaderComponent } from './pages/dashboard/header/header.component';
 import { FooterComponent } from './pages/dashboard/footer/footer.component';
 import { CustomerOverviewComponent } from './pages/customer/customer-overview/customer-overview.component';
 import { CustomerDetailComponent } from './pages/customer/customer-detail/customer-detail.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { ProductOverviewComponent } from './pages/product/product-overview/product-overview.component';
+import { ProductDetailComponent } from './pages/product/product-detail/product-detail.component';
+import { PackageOverviewComponent } from './pages/package/package-overview/package-overview.component';
+import { PackageDetailComponent } from './pages/package/package-detail/package-detail.component';
 
 
 
@@ -30,11 +33,14 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     DashboardComponent,
     SideNavComponent,
     HomeComponent,
-    LogoutComponent,
     HeaderComponent,
     FooterComponent,
     CustomerOverviewComponent,
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    ProductOverviewComponent,
+    ProductDetailComponent,
+    PackageOverviewComponent,
+    PackageDetailComponent
   ],
   imports: [
     BrowserModule,
