@@ -37,7 +37,9 @@ namespace Web.Core.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<WebDbContext>();
+            //services.AddDbContext<WebDbContext>();
+            var connection = @"Server=HIEPPC;Database=basic_db;Trusted_Connection=True;ConnectRetryCount=0";
+            services.AddDbContext<WebDbContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("Web.Core.API")));
 
             WebIocRegister.RegisterServices(services);
 
