@@ -14,6 +14,7 @@ namespace Web.Core.AppService
         {
             services.AddScoped<WebDbContext, WebDbContext>();
             services.AddSingleton<IAccountQueryService, AccountQueryService>();
+            services.AddSingleton<IPackageQueryService, PackageQueryService>();
         }
     }
 }
