@@ -23,6 +23,7 @@ import { ProductOverviewComponent } from './pages/product/product-overview/produ
 import { ProductDetailComponent } from './pages/product/product-detail/product-detail.component';
 import { PackageOverviewComponent } from './pages/package/package-overview/package-overview.component';
 import { PackageDetailComponent } from './pages/package/package-detail/package-detail.component';
+import { PackageService } from './pages/package/@services/package.service';
 
 
 
@@ -55,7 +56,8 @@ import { PackageDetailComponent } from './pages/package/package-detail/package-d
     TranslateService,
     LoginService,
     AuthGuard,
-    ScriptLoaderService
+    ScriptLoaderService,
+    PackageService
   ],
   bootstrap: [AppComponent]
 })
