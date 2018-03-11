@@ -3,7 +3,14 @@
 
 <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
 	<app-side-nav></app-side-nav>
-	<router-outlet></router-outlet>
+	<div class="m-grid__item m-grid__item--fluid m-wrapper">
+		<!-- <app-breadcrum></app-breadcrum> -->
+		<div class="m-content">
+			<router-outlet></router-outlet>
+		</div>
+
+	</div>
+
 </div>
 <!-- end:: Body -->
 <app-footer></app-footer>

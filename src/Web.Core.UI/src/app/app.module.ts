@@ -24,6 +24,7 @@ import { ProductDetailComponent } from './pages/product/product-detail/product-d
 import { PackageOverviewComponent } from './pages/package/package-overview/package-overview.component';
 import { PackageDetailComponent } from './pages/package/package-detail/package-detail.component';
 import { PackageService } from './pages/package/@services/package.service';
+import { BreadcrumComponent } from './pages/dashboard/breadcrum/breadcrum.component';
 
 
 
@@ -41,7 +42,8 @@ import { PackageService } from './pages/package/@services/package.service';
     ProductOverviewComponent,
     ProductDetailComponent,
     PackageOverviewComponent,
-    PackageDetailComponent
+    PackageDetailComponent,
+    BreadcrumComponent
   ],
   imports: [
     BrowserModule,

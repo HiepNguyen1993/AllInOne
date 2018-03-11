@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Web.Core.AppService.Domain;
 using Web.Core.AppService.ServiceContracts.Query;
 
 namespace Web.Core.AppService.Services.Query

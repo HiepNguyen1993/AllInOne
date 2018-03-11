@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Web.Core.AppService.Domain;
 using Web.Core.AppService.DTO;
 using Web.Core.AppService.Models;
 using Web.Core.AppService.ServiceContracts.Query;
@@ -20,16 +19,13 @@ namespace Web.Core.API.Controllers
     [Route("api/Account")]
     public class AccountController : Controller
     {
-        private readonly WebDbContext _context;
         private readonly IAccountQueryService _accountQueryService;
         private readonly IConfiguration _configuration;
 
         public AccountController(
-            WebDbContext context,
             IAccountQueryService accountQueryService,
             IConfiguration configuration)
         {
-            _context = context;
             _accountQueryService = accountQueryService;
             _configuration = configuration;
         }
@@ -70,23 +66,28 @@ namespace Web.Core.API.Controllers
 
         [Authorize]
         [HttpGet]
-        public IEnumerable<Account> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return _context.Account.ToList();
+            var userList = await _accountQueryService.GetAllUser();
+            return Json(new
+            {
+                data = userList,
+                itemsCount = userList.Count
+            });
         }
 
         [HttpGet("GetbyId")]
-        public IActionResult GetById([FromQuery]long id)
+        public async Task<IActionResult> GetById([FromQuery]long id)
         {
-            var item = _context.Account.FirstOrDefault(t => t.Id == id);
+            var item = await _accountQueryService.GetUserById(id);
             if (item == null)
             {
                 return NotFound();
             }
-            return new ObjectResult(item);
+            return Ok(item);
         }
 
-        private async Task<object> GenerateJwtToken(User user)
+        private async Task<object> GenerateJwtToken(Account user)
         {
             var claims = new List<Claim>
             {

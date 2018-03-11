@@ -1,15 +1,74 @@
+import { PageResponse } from './../../../common/models';
+import { CustomerService } from './../@services/customer.service';
+import { TranslateService } from './../../../translate/translate.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { PageModel } from '../../../common/models';
 
 @Component({
   selector: 'app-customer-overview',
   templateUrl: './customer-overview.component.html',
-  styleUrls: ['./customer-overview.component.css']
+  styleUrls: ['./customer-overview.component.css'],
+  providers:[CustomerService]
 })
 export class CustomerOverviewComponent implements OnInit {
+  public gridCustomerApi;
+  public gridCustomerOptions;
 
-  constructor() { }
+  constructor(private _router: Router, private _translateService: TranslateService,
+    private _customerService: CustomerService) { }
 
   ngOnInit() {
+    this.initCustomerGrid();
+  }
+
+  initCustomerGrid() {
+    this.gridCustomerOptions = {
+      paging: true,
+      pageSize: 12,
+      fields: [
+        {
+          headerTemplate: () => {
+            return $(`<a style="color:green" href="javascript:void(0)" data-toggle="tooltip" data-placement="bottom">
+              <i class="fa fa-plus"></i> ${this._translateService.translate('New')}
+              </a>`)
+              .on('click', (e) => {
+                this._router.navigate(['/dsb/customer/customer-detail']);
+              });
+          },
+          itemTemplate: (_, item) => {
+            // tslint:disable-next-line:quotemark
+            return $("<input>").attr("type", "button").attr("class", "jsgrid-button jsgrid-edit-button")
+              .on('click', () => {
+                this._router.navigate(['dsb/customer/customer-detail/' + item.id]);
+              });
+          },
+          align: 'center',
+          width: 30
+        },
+        { name: 'Id', title: 'Number', type: 'text', align: 'center', width: 30 },
+        { name: 'Fullname', title: 'Name', type: 'text' },
+        { name: 'Gender', title: 'Gender', type: 'text' },
+        { name: 'Phone', title: 'Phone', type: 'text' },
+        { name: 'Address', title: 'Address', type: 'text' },
+        { name: 'Email', title: 'Email', type: 'text' },
+        { name: 'delFlag', title: 'Use', type: 'text' }
+      ]
+    };
+
+    this.getCustomerList();
+  }
+
+  getCustomerList() {
+    this.gridCustomerApi = (paging: PageModel) => {
+      return new Promise((resolve) => {
+        this._customerService.getCustomerList({}, paging).subscribe(res => {
+          resolve(new PageResponse(res.json()));
+        }, error => {
+          console.log('Error: ' + error);
+        });
+      });
+    };
   }
 
 }

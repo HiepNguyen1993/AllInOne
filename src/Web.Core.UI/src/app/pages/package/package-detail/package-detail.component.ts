@@ -30,13 +30,13 @@ export class PackageDetailComponent implements OnInit {
       .map(res => res.json())
       .subscribe(res => {
         if (res.status === 'success') {
-          Alerts.successNotify("Done");
+          Alerts.successNotify('Done');
         } else {
-          Alerts.errorNotify("Error");
+          Alerts.errorNotify('Error');
         }
       });
     } catch (ex) {
-      Alerts.errorNotify("Error");
+      Alerts.errorNotify('Error');
     } finally {
     }
   }
