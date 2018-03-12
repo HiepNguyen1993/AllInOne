@@ -27,10 +27,16 @@
         "./assets/css/login.css",
         "./assets/vendors/custom/fullcalendar/fullcalendar.bundle.css",
         "./assets/vendors/base/vendors.bundle.css",
-        "./assets/demo/demo3/base/style.bundle.css"
+        "./assets/demo/demo3/base/style.bundle.css",
+        "./assets/css/plugins/jsgrid.css",
+        "./assets/css/plugins/jsgrid-theme.css",
+        "./assets/js/jquery-ui/jquery-ui.css"
       ],
       "scripts": [
         "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "./assets/js/jquery-ui/jquery-ui.min.js",
+        "./assets/js/plugins/jsgrid.js",
+        "./assets/js/plugins/jsgrid_customTypes.js",
         "../node_modules/sweetalert2/dist/sweetalert2.min.js",
         "../node_modules/moment/min/moment.min.js",
         "../node_modules/moment/min/moment-with-locales.min.js",
