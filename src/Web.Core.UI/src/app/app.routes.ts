@@ -11,6 +11,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductDetailComponent } from './pages/product/product-detail/product-detail.component';
 import { PackageOverviewComponent } from './pages/package/package-overview/package-overview.component';
+import { ProductTypeComponent } from './pages/product/product-type/product-type.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
             { path: 'create-customer', component: CustomerDetailComponent, canActivate: [AuthGuard] },
             { path: 'product', component: ProductOverviewComponent, canActivate: [AuthGuard] },
             { path: 'create-product', component: ProductDetailComponent, canActivate: [AuthGuard] },
+            { path: 'create-product-type', component: ProductTypeComponent, canActivate: [AuthGuard] },
             { path: 'package', component: PackageOverviewComponent, canActivate: [AuthGuard] },
             { path: 'create-package', component: PackageDetailComponent, canActivate: [AuthGuard] }
         ]},
