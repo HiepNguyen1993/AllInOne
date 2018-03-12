@@ -20,22 +20,26 @@ namespace Web.Core.API.Controllers
     [Route("api/Customer")]
     public class CustomerController : Controller
     {
-        private readonly IAccountQueryService _accountQueryService;
+        private readonly ICustomerQueryService _customerQueryService;
         private readonly IConfiguration _configuration;
 
         public CustomerController(
-            IAccountQueryService accountQueryService,
+            ICustomerQueryService customerQueryService,
             IConfiguration configuration)
         {
-            _accountQueryService = accountQueryService;
+            _customerQueryService = customerQueryService;
             _configuration = configuration;
         }
 
         [HttpGet("get-customer-list")]
         public async Task<IActionResult> GetCustomerList([FromQuery] CustomerRequestDTO customerRequest)
         {
-            
-            return BadRequest("Could not verify username and password");
+            var customerList = await _customerQueryService.GetAllCustomer();
+            return Json(new
+            {
+                data = customerList,
+                itemsCount = customerList.Count
+            });
         }
 
      

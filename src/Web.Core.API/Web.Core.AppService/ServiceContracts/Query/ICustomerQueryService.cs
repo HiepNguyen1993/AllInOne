@@ -6,10 +6,8 @@ using Web.Core.AppService.Models;
 
 namespace Web.Core.AppService.ServiceContracts.Query
 {
-    public interface IAccountQueryService
+    public interface ICustomerQueryService
     {
-        Task<Account> ValidateUser(string username, string password);
-        Task<List<Account>> GetAllUser();
-        Task<Account> GetUserById(long id);
+        Task<List<Customer>> GetAllCustomer();
     }
 }
