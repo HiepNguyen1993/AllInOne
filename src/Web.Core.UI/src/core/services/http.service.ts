@@ -59,27 +59,27 @@ export class HttpService implements IHttpService {
         console.log(error);
         let errMsg = 'error';
         if (error.status === 401 && error.statusText === 'Unauthorized') {
-            console.log('Unauthorized status - Force user re-login');
-            this._authService.forceReLogin();
+          console.log('Unauthorized status - Force user re-login');
+          this._authService.forceReLogin();
         } else {
-            errMsg = error.json();
-            console.log(errMsg);
+          errMsg = error.json();
+          console.log(errMsg);
 
-            switch (error.status) {
-                case 0:
-                  // Common.throwErrorOrBadRequest('Your back-end server might not be available!'); 
-                  break;
-                case 500:
-                    const token_expire_time = this._authService.getToken('token_expire');
-                    if (token_expire_time && new Date(token_expire_time).getTime() < new Date().getTime()) {
-                        this._authService.forceReLogin();
-                    }
-                    Common.throwErrorOrBadRequest(error.json().message);
-                    break;
-            }
+          switch (error.status) {
+            case 0:
+              // Common.throwErrorOrBadRequest('Your back-end server might not be available!'); 
+              break;
+            case 500:
+              const token_expire_time = this._authService.getToken('token_expire');
+              if (token_expire_time && new Date(token_expire_time).getTime() < new Date().getTime()) {
+                this._authService.forceReLogin();
+              }
+              Common.throwErrorOrBadRequest(error.json().message);
+              break;
+          }
         }
         return Observable.throw(error);
-    });
+      });
   }
 
   create(url: string, data: any) {
@@ -241,5 +241,20 @@ export class HttpService implements IHttpService {
     reqOpts.url = this._apiPath + url;
 
     return this.execute(reqOpts);
+  }
+
+  public setHeadersForUpLoadFile() {
+    const authHeaders = new Headers();
+    authHeaders.append('Authorization', 'bearer ' + this.TOKEN);
+    const options: RequestOptionsArgs = {
+      headers: authHeaders
+    };
+    return options;
+  }
+
+  uploadFile(url: string, data: any): Observable<any> {
+    const options = this.setHeadersForUpLoadFile();
+    url = this._apiPath + url;
+    return this.http.post(url, data, options);
   }
 }

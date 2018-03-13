@@ -1,3 +1,4 @@
+import { FileUploader } from './../../../shared/@models/file-uploader.class';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Alerts } from '../../../common/alerts';
@@ -11,8 +12,14 @@ import { PackageService } from '../@services/package.service';
 })
 export class PackageDetailComponent implements OnInit {
   public form: FormGroup;
+  public url = '';
+  public uploader: FileUploader = new FileUploader({
+    url: this.url,
+    headers: [{ }]
+  });;
 
-  constructor(private fb: FormBuilder, private _translateService: TranslateService, private _packageService: PackageService) { }
+  constructor(private fb: FormBuilder, private _translateService: TranslateService, private _packageService: PackageService) {
+   }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -39,5 +46,19 @@ export class PackageDetailComponent implements OnInit {
       Alerts.errorNotify('Error');
     } finally {
     }
+  }
+
+  uploadFileClick() {
+    this.uploader.queue.forEach(item => {
+      this.UploadFile(item._file, `${item._file.name.split('.')[0]}.pdf`);
+    });
+  }
+  UploadFile(data: any, fileName) {
+    const file = new FormData();
+    file.append('file', data);
+    file.append('invoiceNo', this.form.controls['invoiceNo'].value);
+    this._packageService.uploadImage(file).subscribe(res => {
+      console.log(res);
+    });
   }
 }

@@ -1,3 +1,5 @@
+import { FileSelectDirective } from './directives/file-select.directive';
+import { FileDropDirective } from './directives/file-drop.directive';
 
 import { SharingService } from './services/sharing.service';
 import { NgModule, ModuleWithProviders } from '@angular/core';
@@ -23,7 +25,9 @@ import { DisabledAllDirective } from './directives/disabled-all.directive';
         JsGridComponent,
         Select2Component,
         DtpickerComponent,
-        DisabledAllDirective
+        DisabledAllDirective,
+        FileDropDirective,
+        FileSelectDirective
     ],
     exports: [
         CommonModule,
@@ -34,7 +38,9 @@ import { DisabledAllDirective } from './directives/disabled-all.directive';
         JsGridComponent,
         Select2Component,
         DtpickerComponent,
-        DisabledAllDirective
+        DisabledAllDirective,
+        FileDropDirective,
+        FileSelectDirective
     ], entryComponents: [
     ],
 })

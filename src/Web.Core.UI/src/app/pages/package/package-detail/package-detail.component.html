@@ -7,8 +7,8 @@
         <div class="m-portlet__head-caption">
           <div class="m-portlet__head-title">
             <span class="m-portlet__head-icon m--hide">
-                <i class="la la-gear"></i>
-              </span>
+              <i class="la la-gear"></i>
+            </span>
             <h3 class="m-portlet__head-text">
               Create Package
             </h3>
@@ -18,45 +18,68 @@
       <!--begin::Form-->
       <form role="form" [formGroup]="form" (ngSubmit)="savePackage()" class="m-form m-form--fit m-form--label-align-right">
         <div class="m-portlet__body">
-          <div class="form-group m-form__group">
-            <label for="Name">
-                Name
-              </label>
-            <input type="text" class="form-control m-input" formControlName="Name" placeholder="Enter name">
-          </div>
-          <div class="form-group m-form__group">
-            <label for="Price">
-                Price
-              </label>
-            <input type="text" class="form-control m-input" formControlName="Price" placeholder="Price">
-          </div>
-          <div class="form-group m-form__group">
-            <label for="ThemeId">
-                Theme Id
-              </label>
-            <input type="text" class="form-control m-input" formControlName="ThemeId" placeholder="Theme Id">
-          </div>
-          <div class="form-group m-form__group">
-            <label for="Description">
-                Description
-              </label>
-            <textarea class="form-control m-input" formControlName="Description" rows="3"></textarea>
-          </div>
-          <div class="m-form__group form-group">
-            <label class="m-checkbox">
-                <input type="checkbox" checked="checked" formControlName="delFlag"> Delete
-                <span></span>
-              </label>
+          <div class="form-group m-form__group row">
+            <div class="col-md-6">
+              <div class="form-group m-form__group">
+                <label for="Name">
+                  Name
+                </label>
+                <input type="text" class="form-control m-input" formControlName="Name" placeholder="Enter name">
+              </div>
+              <div class="form-group m-form__group">
+                <label for="Price">
+                  Price
+                </label>
+                <input type="text" class="form-control m-input" formControlName="Price" placeholder="Price">
+              </div>
+              <div class="form-group m-form__group">
+                <label for="ThemeId">
+                  Theme Id
+                </label>
+                <input type="text" class="form-control m-input" formControlName="ThemeId" placeholder="Theme Id">
+              </div>
+              <div class="form-group m-form__group">
+                <label for="Description">
+                  Description
+                </label>
+                <textarea class="form-control m-input" formControlName="Description" rows="3"></textarea>
+              </div>
+              <div class="m-form__group form-group">
+                <label class="m-checkbox">
+                  <input type="checkbox" checked="checked" formControlName="delFlag"> Delete
+                  <span></span>
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6">
+                <div id="dropzone" [ngClass]="{'file-over': hasBaseDropZoneOver}" ng2FileDrop [uploader]="uploader" (click)="fileInput.click()">
+                    <p id="upload_txt" *ngIf="uploader?.queue?.length == 0">
+                      <span id="upload_txt_drop">Drop File</span>
+                      <small>(or click)</small> to Upload</p>
+                    <div class="fileItem" *ngFor="let item of uploader.queue" (click)="preventEvent($event)">
+                      <div class="itemImage">
+                        <button type="button" class="remove" (click)="preventEvent($event, item)">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <img src="" class="img-center" src="../../../../assets/images/file_img.jpg" />
+                      </div>
+                      <div class="itemName">
+                        <p style="font-size: 13px; text-align: center;">{{ item?.file?.name }}</p>
+                      </div>
+                    </div>
+                    <input type="file" #fileInput ng2FileSelect [uploader]="uploader" style="display: none" />
+                  </div>
+            </div>
           </div>
         </div>
         <div class="m-portlet__foot m-portlet__foot--fit">
           <div class="m-form__actions">
             <button type="submit" [disabled]="form.invalid" class="btn btn-primary">
-                Save
-              </button>
+              Save
+            </button>
             <button type="reset" class="btn btn-secondary">
-                Cancel
-              </button>
+              Cancel
+            </button>
           </div>
         </div>
       </form>

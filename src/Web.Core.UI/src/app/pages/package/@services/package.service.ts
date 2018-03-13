@@ -1,3 +1,4 @@
+import { PackageUrl } from './../../../shared/urls/package.url';
 import { Injectable } from '@angular/core';
 import { PackageModel } from '../@models/package.model';
 import { HttpService } from '../../../../core/index';
@@ -8,12 +9,12 @@ export class PackageService {
   constructor(private _httpService: HttpService) {
   }
 
-  insertPackage(model: PackageModel){
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json; charset=utf-8');
-    const newLocal: any = { headers: headers };
+  insertPackage(model: PackageModel) {
+    return this._httpService.postData(PackageUrl.UPLOAD_PACKAGE_IMAGE, model);
+  }
 
-    return this._httpService.post('/Package/insertPackage', model, newLocal);
+  uploadImage(file: any) {
+    return this._httpService.uploadFile(PackageUrl.UPLOAD_PACKAGE_IMAGE, file);
   }
 
 }
