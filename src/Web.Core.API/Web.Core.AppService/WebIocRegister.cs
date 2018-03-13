@@ -16,6 +16,7 @@ namespace Web.Core.AppService
             services.AddSingleton<IAccountQueryService, AccountQueryService>();
             services.AddSingleton<IPackageQueryService, PackageQueryService>();
             services.AddSingleton<ICustomerQueryService, CustomerQueryService>();
+            services.AddSingleton<IProductQueryService, ProductQueryService>();
         }
     }
 }

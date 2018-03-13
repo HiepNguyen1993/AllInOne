@@ -25,6 +25,8 @@ import { PackageOverviewComponent } from './pages/package/package-overview/packa
 import { PackageDetailComponent } from './pages/package/package-detail/package-detail.component';
 import { PackageService } from './pages/package/@services/package.service';
 import { BreadcrumComponent } from './pages/dashboard/breadcrum/breadcrum.component';
+import { ProductTypeComponent } from './pages/product/product-type/product-type.component';
+import { ProductTypeService } from './pages/product/@services/product-type.service';
 
 
 
@@ -43,7 +45,8 @@ import { BreadcrumComponent } from './pages/dashboard/breadcrum/breadcrum.compon
     ProductDetailComponent,
     PackageOverviewComponent,
     PackageDetailComponent,
-    BreadcrumComponent
+    BreadcrumComponent,
+    ProductTypeComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ import { BreadcrumComponent } from './pages/dashboard/breadcrum/breadcrum.compon
     LoginService,
     AuthGuard,
     ScriptLoaderService,
-    PackageService
+    PackageService,
+    ProductTypeService
   ],
   bootstrap: [AppComponent]
 })

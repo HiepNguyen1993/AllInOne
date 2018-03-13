@@ -33,7 +33,7 @@ namespace Web.Core.API.Controllers
             package.Price = request.Price;
             package.ThemeId = request.ThemeId;
             package.Description = request.Description;
-            package.delFlag = false;
+            package.delFlag = request.delFlag;
 
             bool result = await _packageQueryService.InsertPackage(package);
             if (result)
