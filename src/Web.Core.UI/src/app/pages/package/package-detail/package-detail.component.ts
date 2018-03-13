@@ -27,7 +27,7 @@ export class PackageDetailComponent implements OnInit {
       'Price': ['', Validators.required],
       'ThemeId': ['', Validators.required],
       'Description': ['', Validators.required],
-      'ImgName': ['', Validators.required],
+      'ImgName': [''],
       'delFlag': [false]
     });
   }

@@ -25,6 +25,7 @@
         "../node_modules/sweetalert2/dist/sweetalert2.min.css",
         "../node_modules/print.js/dist/print.min.css",
         "./assets/css/login.css",
+        "./assets/css/wedding.css",
         "./assets/vendors/custom/fullcalendar/fullcalendar.bundle.css",
         "./assets/vendors/base/vendors.bundle.css",
         "./assets/demo/demo3/base/style.bundle.css",
