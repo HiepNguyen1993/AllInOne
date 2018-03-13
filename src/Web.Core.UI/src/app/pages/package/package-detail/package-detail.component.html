@@ -19,7 +19,7 @@
       <form role="form" [formGroup]="form" (ngSubmit)="savePackage()" class="m-form m-form--fit m-form--label-align-right">
         <div class="m-portlet__body">
           <div class="form-group m-form__group row">
-            <div class="col-md-6">
+            <div class="col-md-8">
               <div class="form-group m-form__group">
                 <label for="Name">
                   Name
@@ -51,24 +51,35 @@
                 </label>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
+              <div class="form-group m-form__group">
+                <img id="package_image" [src]="this.form.controls['ImgName'].value" onerror="this.src='../../../../assets/images/file.png';">
+              </div>
+              <div class="form-group m-form__group">
                 <div id="dropzone" [ngClass]="{'file-over': hasBaseDropZoneOver}" ng2FileDrop [uploader]="uploader" (click)="fileInput.click()">
-                    <p id="upload_txt" *ngIf="uploader?.queue?.length == 0">
-                      <span id="upload_txt_drop">Drop File</span>
-                      <small>(or click)</small> to Upload</p>
-                    <div class="fileItem" *ngFor="let item of uploader.queue" (click)="preventEvent($event)">
-                      <div class="itemImage">
-                        <button type="button" class="remove" (click)="preventEvent($event, item)">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                        <img src="" class="img-center" src="../../../../assets/images/file_img.jpg" />
-                      </div>
-                      <div class="itemName">
-                        <p style="font-size: 13px; text-align: center;">{{ item?.file?.name }}</p>
-                      </div>
+                  <p id="upload_txt" *ngIf="uploader?.queue?.length == 0">
+                    <span id="upload_txt_drop">Drop File</span>
+                    <small>(or click)</small> to Upload</p>
+                  <div class="fileItem" *ngFor="let item of uploader.queue" (click)="preventEvent($event)">
+                    <div class="itemImage">
+                      <button type="button" class="remove" (click)="preventEvent($event, item)">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <img src="" class="img-center" src="../../../../assets/images/file_img.jpg" />
                     </div>
-                    <input type="file" #fileInput ng2FileSelect [uploader]="uploader" style="display: none" />
+                    <div class="itemName">
+                      <p style="font-size: 13px; text-align: center;">{{ item?.file?.name }}</p>
+                    </div>
                   </div>
+                  <input type="file" #fileInput ng2FileSelect [uploader]="uploader" style="display: none" />
+                </div>
+              </div>
+
+              <div class="form-group m-form__group">
+                <button type="button" class="btn btn-primary">
+                  Upload
+                </button>
+              </div>
             </div>
           </div>
         </div>
