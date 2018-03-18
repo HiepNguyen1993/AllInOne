@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -26,6 +27,34 @@ namespace Web.Core.AppService.Services.Query
         {
             Account account = _context.Account.FirstOrDefault(t => t.Id == id);
             return await Task.FromResult(account);
+        }
+
+        public async Task<bool> InsertAccount(Account account)
+        {
+            try
+            {
+                _context.Account.AddRange(account);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateAccount(Account account)
+        {
+            try
+            {
+                _context.Account.AddRange(account);
+                _context.UpdateRange();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public async Task<Account> ValidateUser(string username, string password)

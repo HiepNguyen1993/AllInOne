@@ -3,7 +3,7 @@
     <div class="m-portlet__head-caption">
       <div class="m-portlet__head-title">
         <h3 class="m-portlet__head-text">
-          Customer Details
+          Account Details
         </h3>
       </div>
     </div>
@@ -74,7 +74,7 @@
   </div>
   <div class="m-portlet__body">
     <!--begin::Form-->
-    <form role="form" [formGroup]="form" (ngSubmit)="saveCustomer()" class="m-form m-form--fit m-form--label-align-right">
+    <form role="form" [formGroup]="form" (ngSubmit)="saveAccount()" class="m-form m-form--fit m-form--label-align-right">
         <div class="m-portlet__body">
           <div class="form-group m-form__group row">
             <div class="col-md-8">
@@ -90,26 +90,16 @@
                       Full Name
                   </label>
                   <div class="col-7">
-                      <input class="form-control m-input" type="text" formControlName="Fullname">
+                      <input class="form-control m-input" type="text" formControlName="Name">
+                      <input class="form-control m-input" type="hidden" formControlName="Id">
                   </div>
               </div>
               <div class="form-group m-form__group row">
                   <label for="example-text-input" class="col-2 col-form-label">
-                      Occupation
+                      Gender
                   </label>
                   <div class="col-7">
-                      <input class="form-control m-input" type="text" formControlName="Occupation">
-                  </div>
-              </div>
-              <div class="form-group m-form__group row">
-                  <label for="example-text-input" class="col-2 col-form-label">
-                      Company Name
-                  </label>
-                  <div class="col-7">
-                      <input class="form-control m-input" type="text" formControlName="Companyname">
-                      <span class="m-form__help">
-                          If you want your invoices addressed to a company. Leave blank to use your full name.
-                      </span>
+                        <p-select2 [(value)]="this.form.controls['Gender'].value" idField="id" textField="displayName" [source]="genderList"></p-select2> 
                   </div>
               </div>
               <div class="form-group m-form__group row">
@@ -117,23 +107,15 @@
                       Phone No.
                   </label>
                   <div class="col-7">
-                      <input class="form-control m-input" type="text" value="+456669067890" formControlName="Phonenumer">
+                      <input class="form-control m-input" type="text" formControlName="Phone">
                   </div>
               </div>
               <div class="form-group m-form__group row">
                   <label for="example-text-input" class="col-2 col-form-label">
-                      Email Address.
+                      Email Address
                   </label>
                   <div class="col-7">
-                      <input class="form-control m-input" type="text" value="mark.andre@gmail.com" formControlName="Email">
-                  </div>
-              </div>
-              <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-              <div class="form-group m-form__group row">
-                  <div class="col-10 ml-auto">
-                      <h3 class="m-form__section">
-                          2. Address
-                      </h3>
+                      <input class="form-control m-input" type="text" formControlName="Email">
                   </div>
               </div>
               <div class="form-group m-form__group row">
@@ -141,72 +123,51 @@
                       Address
                   </label>
                   <div class="col-7">
-                      <input class="form-control m-input" type="text" value="L-12-20 Vertex, Cybersquare" formControlName="Address">
-                  </div>
-              </div>
-              <div class="form-group m-form__group row">
-                  <label for="example-text-input" class="col-2 col-form-label">
-                      City
-                  </label>
-                  <div class="col-7">
-                      <input class="form-control m-input" type="text" value="San Francisco">
-                  </div>
-              </div>
-              <div class="form-group m-form__group row">
-                  <label for="example-text-input" class="col-2 col-form-label">
-                      State
-                  </label>
-                  <div class="col-7">
-                      <input class="form-control m-input" type="text" value="California">
-                  </div>
-              </div>
-              <div class="form-group m-form__group row">
-                  <label for="example-text-input" class="col-2 col-form-label">
-                      Postcode
-                  </label>
-                  <div class="col-7">
-                      <input class="form-control m-input" type="text" value="45000">
+                      <input class="form-control m-input" type="text" formControlName="Address">
                   </div>
               </div>
               <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
               <div class="form-group m-form__group row">
                   <div class="col-10 ml-auto">
                       <h3 class="m-form__section">
-                          3. Social Links
+                          2. Account Detail
                       </h3>
                   </div>
               </div>
               <div class="form-group m-form__group row">
                   <label for="example-text-input" class="col-2 col-form-label">
-                      Linkedin
+                      Account ID
                   </label>
                   <div class="col-7">
-                      <input class="form-control m-input" type="text" value="www.linkedin.com/Mark.Andre" formControlName="Linkedin">
+                      <input class="form-control m-input" type="text" formControlName="Login">
                   </div>
               </div>
               <div class="form-group m-form__group row">
                   <label for="example-text-input" class="col-2 col-form-label">
-                      Facebook
+                      Password
                   </label>
                   <div class="col-7">
-                      <input class="form-control m-input" type="text" value="www.facebook.com/Mark.Andre" formControlName="Facebook">
+                      <input class="form-control m-input" type="text" formControlName="Password">
                   </div>
               </div>
               <div class="form-group m-form__group row">
                   <label for="example-text-input" class="col-2 col-form-label">
-                      Twitter
+                      Create Date
                   </label>
                   <div class="col-7">
-                      <input class="form-control m-input" type="text" value="www.twitter.com/Mark.Andre" formControlName="Twitter">
+                      <input class="form-control m-input" type="text" formControlName="CreateDate" disabled>
                   </div>
               </div>
               <div class="form-group m-form__group row">
-                  <label for="example-text-input" class="col-2 col-form-label">
-                      Instagram
-                  </label>
-                  <div class="col-7">
-                      <input class="form-control m-input" type="text" value="www.instagram.com/Mark.Andre" formControlName="Instagram">
-                  </div>
+                <label for="example-text-input" class="col-2 col-form-label">
+                      
+                </label>
+                <div class="col-7">
+                    <label class="m-checkbox">
+                        <input type="checkbox" formControlName="isActive"> Active Flag
+                        <span></span>
+                    </label>
+                </div>
               </div>
             </div>
             <div class="col-md-4">

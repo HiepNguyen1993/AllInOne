@@ -9,5 +9,7 @@ namespace Web.Core.AppService.ServiceContracts.Query
     public interface ICustomerQueryService
     {
         Task<List<Customer>> GetAllCustomer();
+        Task<bool> InsertCustomer(Customer customer);
+        Task<Customer> GetUserById(long id);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -22,6 +23,24 @@ namespace Web.Core.AppService.Services.Query
             return await Task.FromResult(customerList);
         }
 
-        
+        public async Task<Customer> GetUserById(long id)
+        {
+            Customer customer = _context.Customer.FirstOrDefault(t => t.Id == id);
+            return await Task.FromResult(customer);
+        }
+        public async Task<bool> InsertCustomer(Customer customer)
+        {
+            try
+            {
+                _context.Customer.AddRange(customer);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }

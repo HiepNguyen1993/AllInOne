@@ -31,6 +31,17 @@ namespace Web.Core.API.Controllers
             _configuration = configuration;
         }
 
+        [HttpGet("get-customer-by-id")]
+        public async Task<IActionResult> GetById([FromQuery]long id)
+        {
+            var item = await _customerQueryService.GetUserById(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return Ok(item);
+        }
+
         [HttpGet("get-customer-list")]
         public async Task<IActionResult> GetCustomerList([FromQuery] CustomerRequestDTO customerRequest)
         {
@@ -42,6 +53,31 @@ namespace Web.Core.API.Controllers
             });
         }
 
-     
+        [AllowAnonymous]
+        [HttpPost("insert-customer")]
+        public async Task<IActionResult> InsertCustomer([FromBody] CustomerRequestDTO request)
+        {
+            Customer _customer = new Customer();
+            _customer.CreateDate = DateTime.Now;
+            _customer.UpdateDate = DateTime.Now;
+            _customer.Fullname = request.Fullname;
+            _customer.Address = request.Address;
+            _customer.Email = request.Email;
+            _customer.Phone = request.Phonenumer;
+            _customer.delFlag = false;
+            _customer.Gender = false;
+
+            bool result = await _customerQueryService.InsertCustomer(_customer);
+            if (result)
+            {
+                return Ok(new
+                {
+                    status = "success"
+                });
+            }
+
+            return BadRequest("Error");
+        }
+
     }
 }
