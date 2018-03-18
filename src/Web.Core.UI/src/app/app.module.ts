@@ -27,6 +27,8 @@ import { PackageService } from './pages/package/@services/package.service';
 import { BreadcrumComponent } from './pages/dashboard/breadcrum/breadcrum.component';
 import { ProductTypeComponent } from './pages/product/product-type/product-type.component';
 import { ProductTypeService } from './pages/product/@services/product-type.service';
+import { AccountOverviewComponent } from './pages/account/account-overview/account-overview.component';
+import { AccountDetailComponent } from './pages/account/account-detail/account-detail.component';
 
 
 
@@ -46,7 +48,9 @@ import { ProductTypeService } from './pages/product/@services/product-type.servi
     PackageOverviewComponent,
     PackageDetailComponent,
     BreadcrumComponent,
-    ProductTypeComponent
+    ProductTypeComponent,
+    AccountOverviewComponent,
+    AccountDetailComponent,
   ],
   imports: [
     BrowserModule,

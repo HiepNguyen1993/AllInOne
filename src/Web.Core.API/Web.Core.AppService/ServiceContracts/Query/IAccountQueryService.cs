@@ -11,5 +11,7 @@ namespace Web.Core.AppService.ServiceContracts.Query
         Task<Account> ValidateUser(string username, string password);
         Task<List<Account>> GetAllUser();
         Task<Account> GetUserById(long id);
+        Task<bool> InsertAccount(Account account);
+        Task<bool> UpdateAccount(Account account);
     }
 }

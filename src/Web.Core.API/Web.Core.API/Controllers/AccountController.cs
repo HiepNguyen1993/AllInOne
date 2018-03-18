@@ -16,6 +16,7 @@ using Web.Core.AppService.ServiceContracts.Query;
 
 namespace Web.Core.API.Controllers
 {
+    [Authorize]
     [Route("api/Account")]
     public class AccountController : Controller
     {
@@ -109,6 +110,61 @@ namespace Web.Core.API.Controllers
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("insert-account")]
+        public async Task<IActionResult> InsertAccount([FromBody] AccountRequestDTO request)
+        {
+            Account _account = new Account();
+            _account.CreateDate = DateTime.Now;
+            _account.UpdateDate = DateTime.Now;
+            _account.Name = request.Name;
+            _account.Login = request.Login;
+            _account.IsActive = true;
+            _account.Password = request.Password;
+            _account.Phone = request.Phone;
+            _account.Gender = request.Gender;
+            _account.Address = request.Address;
+
+
+            bool result = await _accountQueryService.InsertAccount(_account);
+            if (result)
+            {
+                return Ok(new
+                {
+                    status = "success"
+                });
+            }
+
+            return BadRequest("Error");
+        }
+
+        [AllowAnonymous]
+        [HttpPost("update-account")]
+        public async Task<IActionResult> UpdateAccount([FromBody] AccountRequestDTO request)
+        {
+            Account _account = new Account();
+            _account.Id = request.Id;
+            _account.UpdateDate = DateTime.Now;
+            _account.Name = request.Name;
+            _account.IsActive = request.IsActive;
+            _account.Password = request.Password;
+            _account.Phone = request.Phone;
+            _account.Gender = request.Gender;
+            _account.Address = request.Address;
+
+
+            bool result = await _accountQueryService.UpdateAccount(_account);
+            if (result)
+            {
+                return Ok(new
+                {
+                    status = "success"
+                });
+            }
+
+            return BadRequest("Error");
         }
     }
 }
