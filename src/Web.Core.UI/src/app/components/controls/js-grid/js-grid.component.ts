@@ -183,12 +183,14 @@ export class JsGridComponent implements OnInit, AfterViewInit {
   set api(val) {
     this._api = val || ((paging) => { return { data: {}, itemsCount: 0 }; });
     this.apiChange.emit(val);
-
-    if (this.gridIsEmpty()) {
-      this.$jsGrid.jsGrid(this._options);
-    } else {
-      this.reloadGrid();
-    }
+    require.ensure([], require => {
+      require('jsgrid');
+      if (this.gridIsEmpty()) {
+        this.$jsGrid.jsGrid(this._options);
+      } else {
+        this.reloadGrid();
+      }
+    });
   }
   get api() {
     return this._api;
