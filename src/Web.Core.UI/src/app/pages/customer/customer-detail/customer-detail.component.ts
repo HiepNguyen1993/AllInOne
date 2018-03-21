@@ -42,24 +42,24 @@ export class CustomerDetailComponent implements OnInit {
           this.isNewCustomer = false;
         }
       });
-    
+
     this.initForm();
   }
 
   public initForm() {
     this.form = this.fb.group({
-      'Id': [this.customer.Id || 0],
-      'Fullname': [this.customer.Fullname, Validators.required],
-      'Occupation': [this.customer.Occupation],
-      'Companyname': [this.customer.Companyname],
-      'Phonenumer': [this.customer.Phonenumer, Validators.required],
-      'ImgName': [this.customer.ImgName],
-      'Email': [this.customer.Email, Validators.required],
-      'Address': [this.customer.Address],
-      'Linkedin': [this.customer.Linkedin],
-      'Facebook': [this.customer.Facebook],
-      'Twitter': [this.customer.Twitter],
-      'Instagram': [this.customer.Instagram],
+      'id': [this.customer.Id || 0],
+      'fullname': [this.customer.Fullname, Validators.required],
+      'occupation': [this.customer.Occupation],
+      'companyname': [this.customer.Companyname],
+      'phonenumer': [this.customer.Phonenumer, Validators.required],
+      'imgName': [this.customer.ImgName],
+      'email': [this.customer.Email, Validators.required],
+      'address': [this.customer.Address],
+      'linkedin': [this.customer.Linkedin],
+      'facebook': [this.customer.Facebook],
+      'twitter': [this.customer.Twitter],
+      'instagram': [this.customer.Instagram],
       'delFlag': [false]
     });
   }

@@ -1,3 +1,6 @@
+import { CustomerService } from './pages/customer/@services/customer.service';
+import { CustomerResolver } from './pages/customer/@services/customer.resolver';
+import { AccountResolver } from './pages/account/@services/account.resolver';
 import { SideNavComponent } from './pages/dashboard/side-nav/side-nav.component';
 import { ScriptLoaderService } from './shared/services/script-loader.service';
 import { AuthGuard } from './common/auth.guard';
@@ -29,8 +32,7 @@ import { ProductTypeComponent } from './pages/product/product-type/product-type.
 import { ProductTypeService } from './pages/product/@services/product-type.service';
 import { AccountOverviewComponent } from './pages/account/account-overview/account-overview.component';
 import { AccountDetailComponent } from './pages/account/account-detail/account-detail.component';
-
-
+import { AccountService } from './pages/account/@services/account.service';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,11 @@ import { AccountDetailComponent } from './pages/account/account-detail/account-d
     AuthGuard,
     ScriptLoaderService,
     PackageService,
-    ProductTypeService
+    ProductTypeService,
+    CustomerService,
+    AccountService,
+    CustomerResolver,
+    AccountResolver
   ],
   bootstrap: [AppComponent]
 })

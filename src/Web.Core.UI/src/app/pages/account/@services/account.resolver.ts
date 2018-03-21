@@ -5,7 +5,7 @@ import { AccountService } from './account.service';
 
 
 @Injectable()
-export class CustomerResolver implements Resolve<any> {
+export class AccountResolver implements Resolve<any> {
 
     constructor(
         public accountService: AccountService,
