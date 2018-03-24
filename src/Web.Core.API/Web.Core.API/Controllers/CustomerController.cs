@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using Web.Core.AppService.DTO;
 using Web.Core.AppService.Models;
 using Web.Core.AppService.ServiceContracts.Query;
@@ -63,9 +56,9 @@ namespace Web.Core.API.Controllers
             _customer.Fullname = request.Fullname;
             _customer.Address = request.Address;
             _customer.Email = request.Email;
-            _customer.Phone = request.Phonenumer;
+            _customer.Phone = request.Phone;
             _customer.delFlag = false;
-            _customer.Gender = false;
+            _customer.Gender = request.Gender;
 
             bool result = await _customerQueryService.InsertCustomer(_customer);
             if (result)
@@ -79,5 +72,29 @@ namespace Web.Core.API.Controllers
             return BadRequest("Error");
         }
 
+        [AllowAnonymous]
+        [HttpPost("update-customer")]
+        public async Task<IActionResult> UpdateCustomer([FromBody] CustomerRequestDTO request)
+        {
+            Customer _customer = new Customer();
+            _customer.UpdateDate = DateTime.Now;
+            _customer.Fullname = request.Fullname;
+            _customer.Address = request.Address;
+            _customer.Email = request.Email;
+            _customer.Phone = request.Phone;
+            _customer.delFlag = false;
+            _customer.Gender = request.Gender;
+
+            bool result = await _customerQueryService.UpdateCustomer(_customer);
+            if (result)
+            {
+                return Ok(new
+                {
+                    status = "success"
+                });
+            }
+
+            return BadRequest("Error");
+        }
     }
 }

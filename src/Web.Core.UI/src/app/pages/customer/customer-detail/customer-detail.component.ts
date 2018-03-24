@@ -21,10 +21,10 @@ export class CustomerDetailComponent implements OnInit {
     url: this.url,
     headers: [{ }]
   });;
-  private customer: CustomerModel = new CustomerModel();
-  private accountId = 0;
-  private pageMode;
-  private isNewCustomer = true;
+  public customer: CustomerModel = new CustomerModel();
+  public accountId = 0;
+  public pageMode;
+  public isNewCustomer = true;
 
   constructor(private fb: FormBuilder, private _translateService: TranslateService, private _customerService: CustomerService,
     private activatedRoute: ActivatedRoute) { }
@@ -50,16 +50,11 @@ export class CustomerDetailComponent implements OnInit {
     this.form = this.fb.group({
       'Id': [this.customer.Id || 0],
       'Fullname': [this.customer.Fullname, Validators.required],
-      'Occupation': [this.customer.Occupation],
-      'Companyname': [this.customer.Companyname],
-      'Phonenumer': [this.customer.Phonenumer, Validators.required],
+      'Gender': [this.customer.Gender],
+      'Phone': [this.customer.Phone, Validators.required],
       'ImgName': [this.customer.ImgName],
       'Email': [this.customer.Email, Validators.required],
       'Address': [this.customer.Address],
-      'Linkedin': [this.customer.Linkedin],
-      'Facebook': [this.customer.Facebook],
-      'Twitter': [this.customer.Twitter],
-      'Instagram': [this.customer.Instagram],
       'delFlag': [false]
     });
   }

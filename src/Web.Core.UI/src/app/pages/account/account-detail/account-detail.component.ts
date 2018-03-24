@@ -24,13 +24,13 @@ export class AccountDetailComponent implements OnInit {
     headers: [{ }]
   });;
   public account: AccountModel = new AccountModel();
-  private accountId = 0;
+  public accountId = 0;
   public pageMode;
   public isNewAccount = true;
 
   public genderList = [{id: 0, displayName: 'Male'}, {id: 1, displayName: 'Female'}];
 
- constructor(private fb: FormBuilder, private _translateService: TranslateService, private _accountService: AccountService,
+  constructor(private fb: FormBuilder, private _translateService: TranslateService, private _accountService: AccountService,
   private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -57,7 +57,7 @@ export class AccountDetailComponent implements OnInit {
         this._accountService.insertAccount(this.form.value)
         .map(res => res.json())
         .subscribe(res => {
-          if (res.status === 'Create successfully') {
+          if (res.status === 'success') {
             Alerts.successNotify('Done');
           } else {
             Alerts.errorNotify('Error');
@@ -68,7 +68,7 @@ export class AccountDetailComponent implements OnInit {
         this._accountService.updateAccount(this.form.value)
         .map(res => res.json())
         .subscribe(res => {
-          if (res.status === 'Update successfully') {
+          if (res.status === 'success') {
             Alerts.successNotify('Done');
           } else {
             Alerts.errorNotify('Error');
@@ -101,7 +101,7 @@ export class AccountDetailComponent implements OnInit {
     this.form = this.fb.group({
       'Id': [this.account.Id || 0],
       'Name': [this.account.Name, Validators.required],
-      'Gender': [this.account.Gender],
+      'Gender': [false],
       'Phone': [this.account.Phone, Validators.required],
       'Email': [this.account.Email, Validators.required],
       'ImgName': [this.account.ImgName],
@@ -109,7 +109,7 @@ export class AccountDetailComponent implements OnInit {
       'Login': [this.account.Login, Validators.required],
       'Password': [this.account.Password, Validators.required],
       'CreateDate': [this.account.CreateDate],
-      'isActive': [this.account.isActive],
+      'isActive': [true],
       'delFlag': [false]
     });
   }

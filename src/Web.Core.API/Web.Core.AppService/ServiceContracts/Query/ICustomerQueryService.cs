@@ -10,6 +10,7 @@ namespace Web.Core.AppService.ServiceContracts.Query
     {
         Task<List<Customer>> GetAllCustomer();
         Task<bool> InsertCustomer(Customer customer);
+        Task<bool> UpdateCustomer(Customer customer);
         Task<Customer> GetUserById(long id);
     }
 }

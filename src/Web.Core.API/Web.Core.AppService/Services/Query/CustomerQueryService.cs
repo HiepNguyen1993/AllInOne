@@ -42,5 +42,19 @@ namespace Web.Core.AppService.Services.Query
             }
         }
 
+        public async Task<bool> UpdateCustomer(Customer customer)
+        {
+            try
+            {
+                _context.Customer.AddRange(customer);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }

@@ -38,7 +38,7 @@ namespace Web.Core.API
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddDbContext<WebDbContext>();
-            var connection = @"Server=HIEPPC;Database=basic_db;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = @"Server=DESKTOP-G4PP2C7\KIETSQL;Database=basic_db;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<WebDbContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("Web.Core.API")));
 
             WebIocRegister.RegisterServices(services);

@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpService } from '../../../../core/index';
 import { AccountModel } from '../@models/account.model';
 import { AccountUrl } from '../../../shared/urls/account.url';
+import { CustomerModel } from '../../customer/@models/customer.model';
 
 @Injectable()
 export class AccountService{
 
   constructor(private _httpService: HttpService) { }
 
-  insertAccount(model: AccountModel) {
+  insertAccount(model: CustomerModel) {
     return this._httpService.postData(AccountUrl.INSERT_ACCOUNT, model);
   }
 

@@ -10,7 +10,7 @@ export class PackageService {
   }
 
   insertPackage(model: PackageModel) {
-    return this._httpService.postData(PackageUrl.UPLOAD_PACKAGE_IMAGE, model);
+    return this._httpService.postData(PackageUrl.INSERT_PACKAGE, model); 
   }
 
   uploadImage(file: any) {
