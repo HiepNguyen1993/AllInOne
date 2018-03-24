@@ -1,7 +1,7 @@
 export class CustomerModel {
     public Id: number;
-    public Fullname: string;
-    public Gender: string;
+    public Name: string;
+    public Gender: boolean;
     public Phone: string;
     public ImgName: string;
     public Email: string;
@@ -9,13 +9,13 @@ export class CustomerModel {
 
     serialize(input): CustomerModel {
         if (!input) { return };
-        this.Id = input.Id || 0;
-        this.Fullname = input.Name;
-        this.Gender = input.Gender;
-        this.Phone = input.Phone;
-        this.ImgName = input.ImgName;
-        this.Email = input.Email;
-        this.Address= input.Address;
+        this.Id = input.id || 0;
+        this.Name = input.name;
+        this.Gender = input.gender;
+        this.Phone = input.phone;
+        this.ImgName = input.imgName;
+        this.Email = input.email;
+        this.Address= input.address;
 
         return this;
     }

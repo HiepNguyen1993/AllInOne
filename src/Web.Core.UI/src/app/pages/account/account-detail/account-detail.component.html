@@ -155,7 +155,7 @@
                       Create Date
                   </label>
                   <div class="col-7">
-                      <input class="form-control m-input" type="text" formControlName="CreateDate" disabled>
+                      <input class="form-control m-input" type="text" formControlName="CreateDate">
                   </div>
               </div>
               <div class="form-group m-form__group row">
@@ -164,7 +164,7 @@
                 </label>
                 <div class="col-7">
                     <label class="m-checkbox">
-                        <input type="checkbox" formControlName="isActive"> Active Flag
+                        <input type="checkbox" [checked]="isActive"> Active Flag
                         <span></span>
                     </label>
                 </div>

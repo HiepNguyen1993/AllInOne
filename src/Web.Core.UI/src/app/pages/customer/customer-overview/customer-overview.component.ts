@@ -49,11 +49,19 @@ export class CustomerOverviewComponent implements OnInit {
         },
         { name: 'id', title: 'Number', type: 'text', align: 'center', width: 30 },
         { name: 'fullname', title: 'Name', type: 'text' },
-        { name: 'gender', title: 'Gender', type: 'text' },
+        { name: 'gender', title: 'Gender', type: 'text', itemTemplate: (_, item) => {
+          if(item && item.gender){
+            return "Male";
+          }else  return "Female";
+        }  },
         { name: 'phone', title: 'Phone', type: 'text' },
         { name: 'address', title: 'Address', type: 'text' },
         { name: 'email', title: 'Email', type: 'text' },
-        { name: 'delFlag', title: 'Use', type: 'text' }
+        { name: 'delFlag', title: 'Use', type: 'text', itemTemplate: (_, item) => {
+          if(item && item.delFlag){
+            return "Deleted";
+          }else  return "Used";
+        } }
       ]
     };
 

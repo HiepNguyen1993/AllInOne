@@ -27,8 +27,9 @@ export class AccountDetailComponent implements OnInit {
   public accountId = 0;
   public pageMode;
   public isNewAccount = true;
+  public isActive = true;
 
-  public genderList = [{id: 0, displayName: 'Male'}, {id: 1, displayName: 'Female'}];
+  public genderList = [{id: 'false', displayName: 'Male'}, {id: 'true', displayName: 'Female'}];
 
   constructor(private fb: FormBuilder, private _translateService: TranslateService, private _accountService: AccountService,
   private activatedRoute: ActivatedRoute) { }
@@ -101,16 +102,17 @@ export class AccountDetailComponent implements OnInit {
     this.form = this.fb.group({
       'Id': [this.account.Id || 0],
       'Name': [this.account.Name, Validators.required],
-      'Gender': [false],
+      'Gender': [this.account.Gender? this.account.Gender.toString() : 'true'],
       'Phone': [this.account.Phone, Validators.required],
       'Email': [this.account.Email, Validators.required],
       'ImgName': [this.account.ImgName],
       'Address': [this.account.Address, Validators.required],
       'Login': [this.account.Login, Validators.required],
       'Password': [this.account.Password, Validators.required],
-      'CreateDate': [this.account.CreateDate],
-      'isActive': [true],
+      'CreateDate': [{value: this.account.CreateDate,  disabled: true}],
       'delFlag': [false]
     });
+    
+    this.isActive = this.account.IsActive? this.account.IsActive : false;
   }
 }

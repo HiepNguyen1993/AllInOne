@@ -25,6 +25,7 @@ export class CustomerDetailComponent implements OnInit {
   public accountId = 0;
   public pageMode;
   public isNewCustomer = true;
+  public genderList = [{id: 'false', displayName: 'Male'}, {id: 'true', displayName: 'Female'}];
 
   constructor(private fb: FormBuilder, private _translateService: TranslateService, private _customerService: CustomerService,
     private activatedRoute: ActivatedRoute) { }
@@ -49,17 +50,12 @@ export class CustomerDetailComponent implements OnInit {
   public initForm() {
     this.form = this.fb.group({
       'Id': [this.customer.Id || 0],
-      'Fullname': [this.customer.Fullname, Validators.required],
-      'Occupation': [this.customer.Occupation],
-      'Companyname': [this.customer.Companyname],
-      'Phonenumer': [this.customer.Phonenumer, Validators.required],
+      'Fullname': [this.customer.Name, Validators.required],
+      'Gender': [this.customer.Gender? this.customer.Gender.toString() : 'true'],
+      'Phone': [this.customer.Phone, Validators.required],
       'ImgName': [this.customer.ImgName],
       'Email': [this.customer.Email, Validators.required],
       'Address': [this.customer.Address],
-      'Linkedin': [this.customer.Linkedin],
-      'Facebook': [this.customer.Facebook],
-      'Twitter': [this.customer.Twitter],
-      'Instagram': [this.customer.Instagram],
       'delFlag': [false]
     });
   }

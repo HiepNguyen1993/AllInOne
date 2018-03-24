@@ -9,20 +9,21 @@ export class AccountModel {
     public Login: string;
     public Password: string;
     public CreateDate: string;
-    public isActive: string;
+    public IsActive: boolean;
 
     serialize(input): AccountModel {
         if (!input) { return };
-        this.Id = input.Id || 0;
-        this.Name = input.Name;
-        this.Gender = input.Gender;
-        this.Phone = input.Phone;
-        this.Email = input.Email;
-        this.ImgName = input.ImgName;
-        this.Address = input.Address;
-        this.Login = input.Login;
-        this.Password = input.Password;
-        this.CreateDate = input.CreateDate;
+        this.Id = input.id || 0;
+        this.Name = input.name;
+        this.Gender = input.gender;
+        this.Phone = input.phone;
+        this.Email = input.email;
+        this.ImgName = input.imgName;
+        this.Address = input.address;
+        this.Login = input.login;
+        this.Password = input.password;
+        this.CreateDate = input.createDate;
+        this.IsActive = input.isActive;
         
         return this;
     }

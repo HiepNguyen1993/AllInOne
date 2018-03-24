@@ -166,5 +166,27 @@ namespace Web.Core.API.Controllers
 
             return BadRequest("Error");
         }
+
+        [HttpGet("get-account-list")]
+        public async Task<IActionResult> GetAccountList([FromQuery] CustomerRequestDTO customerRequest)
+        {
+            var accList = await _accountQueryService.GetAllUser();
+            return Json(new
+            {
+                data = accList,
+                itemsCount = accList.Count
+            });
+        }
+
+        [HttpGet("get-account-by-id")]
+        public async Task<IActionResult> GetCustomerById([FromQuery] long Id)
+        {
+            var acc = await _accountQueryService.GetUserById(Id);
+            if (acc == null)
+            {
+                return NotFound();
+            }
+            return Ok(acc);
+        }
     }
 }

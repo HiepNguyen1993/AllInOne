@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -77,6 +78,7 @@ namespace Web.Core.API.Controllers
         public async Task<IActionResult> UpdateCustomer([FromBody] CustomerRequestDTO request)
         {
             Customer _customer = new Customer();
+            _customer.Id = request.Id;
             _customer.UpdateDate = DateTime.Now;
             _customer.Fullname = request.Fullname;
             _customer.Address = request.Address;
@@ -84,6 +86,8 @@ namespace Web.Core.API.Controllers
             _customer.Phone = request.Phone;
             _customer.delFlag = false;
             _customer.Gender = request.Gender;
+
+            //validUser = Mapper.Map(isValidUser, validUser);
 
             bool result = await _customerQueryService.UpdateCustomer(_customer);
             if (result)
