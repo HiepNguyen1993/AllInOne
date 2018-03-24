@@ -1,3 +1,5 @@
+import { CustomerResolver } from './pages/customer/@services/customer.resolver';
+import { AccountResolver } from './pages/account/@services/account.resolver';
 import { PackageDetailComponent } from './pages/package/package-detail/package-detail.component';
 import { ProductOverviewComponent } from './pages/product/product-overview/product-overview.component';
 import { CustomerDetailComponent } from './pages/customer/customer-detail/customer-detail.component';
@@ -27,7 +29,7 @@ const routes: Routes = [
             { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
             { path: 'customer', component: CustomerOverviewComponent, canActivate: [AuthGuard] },
             { path: 'create-customer', component: CustomerDetailComponent, canActivate: [AuthGuard] },
-            { path: 'edit-customer/:id', component: CustomerDetailComponent, canActivate: [AuthGuard], resolve: {customer: ''} },
+            { path: 'edit-customer/:id', component: CustomerDetailComponent, canActivate: [AuthGuard], resolve: {customer: CustomerResolver} },
             { path: 'product', component: ProductOverviewComponent, canActivate: [AuthGuard] },
             { path: 'create-product', component: ProductDetailComponent, canActivate: [AuthGuard] },
             { path: 'create-product-type', component: ProductTypeComponent, canActivate: [AuthGuard] },
@@ -35,7 +37,7 @@ const routes: Routes = [
             { path: 'create-package', component: PackageDetailComponent, canActivate: [AuthGuard] },
             { path: 'account', component: AccountOverviewComponent, canActivate: [AuthGuard] },
             { path: 'create-account', component: AccountDetailComponent, canActivate: [AuthGuard] },
-            { path: 'edit-account/:id', component: AccountDetailComponent, canActivate: [AuthGuard], resolve: {account: ''} }
+            { path: 'edit-account/:id', component: AccountDetailComponent, canActivate: [AuthGuard], resolve: {account: AccountResolver} }
         ]},
 
 ];

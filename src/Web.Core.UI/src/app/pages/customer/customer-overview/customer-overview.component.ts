@@ -25,6 +25,7 @@ export class CustomerOverviewComponent implements OnInit {
   initCustomerGrid() {
     this.gridCustomerOptions = {
       paging: true,
+      height: 300,
       pageSize: 12,
       fields: [
         {
@@ -33,25 +34,25 @@ export class CustomerOverviewComponent implements OnInit {
               <i class="fa fa-plus"></i> ${this._translateService.translate('New')}
               </a>`)
               .on('click', (e) => {
-                this._router.navigate(['/dsb/customer/customer-detail']);
+                this._router.navigate(['/dsb/create-customer']);
               });
           },
           itemTemplate: (_, item) => {
             // tslint:disable-next-line:quotemark
             return $("<input>").attr("type", "button").attr("class", "jsgrid-button jsgrid-edit-button")
               .on('click', () => {
-                this._router.navigate(['dsb/customer/customer-detail/' + item.id]);
+                this._router.navigate(['dsb/edit-customer/' + item.id]);
               });
           },
           align: 'center',
           width: 30
         },
-        { name: 'Id', title: 'Number', type: 'text', align: 'center', width: 30 },
-        { name: 'Fullname', title: 'Name', type: 'text' },
-        { name: 'Gender', title: 'Gender', type: 'text' },
-        { name: 'Phone', title: 'Phone', type: 'text' },
-        { name: 'Address', title: 'Address', type: 'text' },
-        { name: 'Email', title: 'Email', type: 'text' },
+        { name: 'id', title: 'Number', type: 'text', align: 'center', width: 30 },
+        { name: 'fullname', title: 'Name', type: 'text' },
+        { name: 'gender', title: 'Gender', type: 'text' },
+        { name: 'phone', title: 'Phone', type: 'text' },
+        { name: 'address', title: 'Address', type: 'text' },
+        { name: 'email', title: 'Email', type: 'text' },
         { name: 'delFlag', title: 'Use', type: 'text' }
       ]
     };

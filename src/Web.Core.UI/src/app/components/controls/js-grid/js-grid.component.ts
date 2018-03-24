@@ -36,20 +36,20 @@ export class JsGridComponent implements OnInit, AfterViewInit {
     autoload: true,
     pageLoading: true,
     pageIndex: 1,
-    pagerFormat: 'Sider: {first} {prev} {pages} {next} {last}    {pageIndex} of {pageCount}',
-    pagePrevText: 'Forrige',
-    pageNextText: 'Neste',
-    pageFirstText: 'Først',
-    pageLastText: 'Siste',
+    pagerFormat: 'Page: {first} {prev} {pages} {next} {last}    {pageIndex} of {pageCount}',
+    pagePrevText: 'Prev',
+    pageNextText: 'Mext',
+    pageFirstText: 'First',
+    pageLastText: 'Last',
     pageNavigatorNextText: '...',
     pageNavigatorPrevText: '...',
-    invalidMessage: 'Ugyldige data lagt inn!',
-    noDataContent: 'Ikke funnet',
-    deleteConfirm: 'Er du sikker?',
+    invalidMessage: 'Invalid data!',
+    noDataContent: 'There is no data',
+    deleteConfirm: 'Do you want delete?',
 
     loadIndication: true,
     loadIndicationDelay: 500,
-    loadMessage: 'Vennligst vent...',
+    loadMessage: 'Loading...',
     downloadExcelUrl: {},
     pageSize: this.pageSize,
     controller: {
@@ -183,12 +183,14 @@ export class JsGridComponent implements OnInit, AfterViewInit {
   set api(val) {
     this._api = val || ((paging) => { return { data: {}, itemsCount: 0 }; });
     this.apiChange.emit(val);
-
-    if (this.gridIsEmpty()) {
-      this.$jsGrid.jsGrid(this._options);
-    } else {
-      this.reloadGrid();
-    }
+    require.ensure([], require => {
+      require('jsgrid');
+      if (this.gridIsEmpty()) {
+        this.$jsGrid.jsGrid(this._options);
+      } else {
+        this.reloadGrid();
+      }
+    });
   }
   get api() {
     return this._api;

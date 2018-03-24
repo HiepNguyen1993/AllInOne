@@ -42,7 +42,7 @@ export class CustomerDetailComponent implements OnInit {
           this.isNewCustomer = false;
         }
       });
-    
+
     this.initForm();
   }
 
@@ -50,11 +50,16 @@ export class CustomerDetailComponent implements OnInit {
     this.form = this.fb.group({
       'Id': [this.customer.Id || 0],
       'Fullname': [this.customer.Fullname, Validators.required],
-      'Gender': [this.customer.Gender],
-      'Phone': [this.customer.Phone, Validators.required],
+      'Occupation': [this.customer.Occupation],
+      'Companyname': [this.customer.Companyname],
+      'Phonenumer': [this.customer.Phonenumer, Validators.required],
       'ImgName': [this.customer.ImgName],
       'Email': [this.customer.Email, Validators.required],
       'Address': [this.customer.Address],
+      'Linkedin': [this.customer.Linkedin],
+      'Facebook': [this.customer.Facebook],
+      'Twitter': [this.customer.Twitter],
+      'Instagram': [this.customer.Instagram],
       'delFlag': [false]
     });
   }
