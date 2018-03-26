@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Web.Core.AppService.DTO;
 using Web.Core.AppService.Models;
 
 namespace Web.Core.AppService.ServiceContracts.Query
@@ -12,6 +13,6 @@ namespace Web.Core.AppService.ServiceContracts.Query
         Task<List<Account>> GetAllUser();
         Task<Account> GetUserById(long id);
         Task<bool> InsertAccount(Account account);
-        Task<bool> UpdateAccount(Account account);
+        Task<bool> UpdateAccount(AccountRequestDTO account);
     }
 }

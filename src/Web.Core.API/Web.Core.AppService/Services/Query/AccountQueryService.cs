@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Web.Core.AppService.DTO;
 using Web.Core.AppService.Models;
 using Web.Core.AppService.ServiceContracts.Query;
 
@@ -43,16 +44,24 @@ namespace Web.Core.AppService.Services.Query
             }
         }
 
-        public async Task<bool> UpdateAccount(Account account)
+        public async Task<bool> UpdateAccount(AccountRequestDTO account)
         {
             try
             {
-                _context.Account.AddRange(account);
-                _context.UpdateRange();
-                return true;
+                Account _account = this._context.Account.FirstOrDefault(c => c.Id == account.Id);
+                if (_account != null)
+                {
+                    _account = Mapper.Map(account, _account);
+                    _account.UpdateDate = DateTime.Now;
+                    _context.Account.Update(_account);
+                    _context.SaveChanges();
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
+                Console.Write(ex.ToString());
                 return false;
             }
         }

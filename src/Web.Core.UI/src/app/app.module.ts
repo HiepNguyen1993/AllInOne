@@ -33,6 +33,7 @@ import { ProductTypeService } from './pages/product/@services/product-type.servi
 import { AccountOverviewComponent } from './pages/account/account-overview/account-overview.component';
 import { AccountDetailComponent } from './pages/account/account-detail/account-detail.component';
 import { AccountService } from './pages/account/@services/account.service';
+import { PackageResolver } from './pages/package/@services/package.resolver';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { AccountService } from './pages/account/@services/account.service';
     CustomerService,
     AccountService,
     CustomerResolver,
-    AccountResolver
+    AccountResolver,
+    PackageResolver
   ],
   bootstrap: [AppComponent]
 })

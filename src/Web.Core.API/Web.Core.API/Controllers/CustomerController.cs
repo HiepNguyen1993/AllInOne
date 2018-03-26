@@ -52,14 +52,11 @@ namespace Web.Core.API.Controllers
         public async Task<IActionResult> InsertCustomer([FromBody] CustomerRequestDTO request)
         {
             Customer _customer = new Customer();
+            
+            _customer = Mapper.Map(request, _customer);
             _customer.CreateDate = DateTime.Now;
             _customer.UpdateDate = DateTime.Now;
-            _customer.Fullname = request.Fullname;
-            _customer.Address = request.Address;
-            _customer.Email = request.Email;
-            _customer.Phone = request.Phone;
             _customer.delFlag = false;
-            _customer.Gender = request.Gender;
 
             bool result = await _customerQueryService.InsertCustomer(_customer);
             if (result)
@@ -78,16 +75,10 @@ namespace Web.Core.API.Controllers
         public async Task<IActionResult> UpdateCustomer([FromBody] CustomerRequestDTO request)
         {
             Customer _customer = new Customer();
-            _customer.Id = request.Id;
-            _customer.UpdateDate = DateTime.Now;
-            _customer.Fullname = request.Fullname;
-            _customer.Address = request.Address;
-            _customer.Email = request.Email;
-            _customer.Phone = request.Phone;
-            _customer.delFlag = false;
-            _customer.Gender = request.Gender;
 
-            //validUser = Mapper.Map(isValidUser, validUser);
+            _customer = Mapper.Map(request, _customer);
+            _customer.UpdateDate = DateTime.Now;
+            _customer.delFlag = false;
 
             bool result = await _customerQueryService.UpdateCustomer(_customer);
             if (result)

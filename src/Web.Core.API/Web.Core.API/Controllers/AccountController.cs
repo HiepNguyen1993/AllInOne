@@ -1,12 +1,11 @@
 ﻿using System;
+using AutoMapper;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -117,16 +116,10 @@ namespace Web.Core.API.Controllers
         public async Task<IActionResult> InsertAccount([FromBody] AccountRequestDTO request)
         {
             Account _account = new Account();
+            _account = Mapper.Map(request, _account);
             _account.CreateDate = DateTime.Now;
             _account.UpdateDate = DateTime.Now;
-            _account.Name = request.Name;
-            _account.Login = request.Login;
             _account.IsActive = true;
-            _account.Password = request.Password;
-            _account.Phone = request.Phone;
-            _account.Gender = request.Gender;
-            _account.Address = request.Address;
-
 
             bool result = await _accountQueryService.InsertAccount(_account);
             if (result)
@@ -144,18 +137,8 @@ namespace Web.Core.API.Controllers
         [HttpPost("update-account")]
         public async Task<IActionResult> UpdateAccount([FromBody] AccountRequestDTO request)
         {
-            Account _account = new Account();
-            _account.Id = request.Id;
-            _account.UpdateDate = DateTime.Now;
-            _account.Name = request.Name;
-            _account.IsActive = request.IsActive;
-            _account.Password = request.Password;
-            _account.Phone = request.Phone;
-            _account.Gender = request.Gender;
-            _account.Address = request.Address;
 
-
-            bool result = await _accountQueryService.UpdateAccount(_account);
+            bool result = await _accountQueryService.UpdateAccount(request);
             if (result)
             {
                 return Ok(new

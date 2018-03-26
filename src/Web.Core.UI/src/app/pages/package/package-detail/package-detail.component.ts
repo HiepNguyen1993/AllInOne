@@ -4,11 +4,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Alerts } from '../../../common/alerts';
 import { TranslateService } from '../../../translate/translate.service';
 import { PackageService } from '../@services/package.service';
+import { PackageModel } from '../@models/package.model';
+import { ActivatedRoute } from '@angular/router';
+import { PageMode } from '../../../common/const';
 
 @Component({
   selector: 'app-package-detail',
   templateUrl: './package-detail.component.html',
-  styleUrls: ['./package-detail.component.css']
+  styleUrls: ['./package-detail.component.css'],
+  providers:[PackageService]
 })
 export class PackageDetailComponent implements OnInit {
   public form: FormGroup;
@@ -17,16 +21,37 @@ export class PackageDetailComponent implements OnInit {
     url: this.url,
     headers: [{ }]
   });;
+  public package: PackageModel = new PackageModel();
+  public packageId = 0;
+  public pageMode;
+  public isPackageCustomer = true;
 
-  constructor(private fb: FormBuilder, private _translateService: TranslateService, private _packageService: PackageService) {
+  constructor(private fb: FormBuilder, private _translateService: TranslateService, private _packageService: PackageService,
+    private activatedRoute: ActivatedRoute) {
    }
 
   ngOnInit() {
+    const paramSubs = this.activatedRoute.params
+      .subscribe(params => {
+        this.packageId = params['id'];
+
+        if (this.activatedRoute.snapshot.data['package']) {
+          console.log(this.activatedRoute.snapshot.data['package'].json());
+          this.package.serialize(this.activatedRoute.snapshot.data['package'].json());
+          this.pageMode = PageMode.EDIT;
+          this.isPackageCustomer = false;
+        }
+    });
+
+    this.initForm();
+  }
+
+  public initForm() {
     this.form = this.fb.group({
-      'Name': ['', Validators.required],
-      'Price': ['', Validators.required],
-      'ThemeId': ['', Validators.required],
-      'Description': ['', Validators.required],
+      'Name': [this.package.Name, Validators.required],
+      'Price': [this.package.Price, Validators.required],
+      'ThemeId': [this.package.ThemeId, Validators.required],
+      'Description': [this.package.Description, Validators.required],
       'ImgName': [''],
       'delFlag': [false]
     });
@@ -34,15 +59,28 @@ export class PackageDetailComponent implements OnInit {
 
   async savePackage() {
     try {
-      this._packageService.insertPackage(this.form.value)
-      .map(res => res.json())
-      .subscribe(res => {
-        if (res.status === 'success') {
-          Alerts.successNotify('Done');
-        } else {
-          Alerts.errorNotify('Error');
-        }
-      });
+      if(this.isPackageCustomer)
+      {
+        this._packageService.insertPackage(this.form.value)
+        .map(res => res.json())
+        .subscribe(res => {
+          if (res.status === 'success') {
+            Alerts.successNotify('Done');
+          } else {
+            Alerts.errorNotify('Error');
+          }
+        });
+      }else{
+        this._packageService.updatePackage(this.form.value)
+        .map(res => res.json())
+        .subscribe(res => {
+          if (res.status === 'success') {
+            Alerts.successNotify('Done');
+          } else {
+            Alerts.errorNotify('Error');
+          }
+        });
+      }
     } catch (ex) {
       Alerts.errorNotify('Error');
     } finally {

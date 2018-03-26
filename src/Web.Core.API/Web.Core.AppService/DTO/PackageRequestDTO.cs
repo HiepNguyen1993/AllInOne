@@ -6,6 +6,7 @@ namespace Web.Core.AppService.DTO
 {
     public class PackageRequestDTO
     {
+        public long Id { get; set; }
         public string Name { get; set; }
         public long Price { get; set; }
         public long ThemeId { get; set; }

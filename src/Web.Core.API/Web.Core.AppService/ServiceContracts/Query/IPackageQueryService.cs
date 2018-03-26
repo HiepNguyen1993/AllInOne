@@ -9,5 +9,8 @@ namespace Web.Core.AppService.ServiceContracts.Query
     public interface IPackageQueryService
     {
         Task<bool> InsertPackage(Package package);
+        Task<bool> UpdatePackage(Package package);
+        Task<List<Package>> GetAllPackage();
+        Task<Package> GetPackageById(long id);
     }
 }
